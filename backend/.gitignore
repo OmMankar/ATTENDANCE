@@ -1,0 +1,4 @@
+
+node_modules
+.env
+teacherdata.json
