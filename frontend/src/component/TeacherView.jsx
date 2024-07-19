@@ -11,7 +11,7 @@ const TeacherView=()=>{
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    fetch("http://localhost:5000/api/v1/teacher/fetchStudent", {
+    fetch("https://attendance-backend-wask.onrender.com/api/v1/teacher/fetchStudent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
