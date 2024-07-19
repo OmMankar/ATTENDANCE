@@ -7,7 +7,7 @@ const { teacherLogin } = require("../controller/teacherLogin");
 const { createTeacher } = require("../controller/createTeacher");
 const { createStudent } = require("../controller/createStudent");
 const { fetchStudent } = require("../controller/fecthStudents");
-const { setStudentAttendance } = require("../controller/SetStudentAttendance");
+const { setStudentAttendance } = require("../controller/setStudentAttendance");
 const { dateOfAttendance } = require("../controller/dateOfAttendance");
 const { numberOfClasses } = require("../controller/numberOfClasses");
 
