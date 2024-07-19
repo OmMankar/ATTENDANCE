@@ -12,7 +12,7 @@ const SubjectCodeWise = () => {
       for (const subjectCode of subjects) {
         try {
           const response = await fetch(
-            `http://localhost:5000/api/v1/teacher/numberOfClasses`,
+            `https://attendance-backend-wask.onrender.com/api/v1/teacher/numberOfClasses`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
