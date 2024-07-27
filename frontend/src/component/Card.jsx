@@ -49,8 +49,16 @@ const Card = ({ item, subjectAttendanceDates, subjectId,totalClasses }) => {
               {status == "teacher" && <h6>Subject code : {subjectCode}</h6>}
               {status !== "teacher" && <h6>Subject code : {subjectId}</h6>}
 
-              {status !== "teacher" && (
-                <p className="card-text" style={{color:'green',font:"message-box"}}> Percentage attendance : {(totalClasses-(subjectAttendanceDates.length))/totalClasses*100}%</p>
+             {status !== "teacher" && ( (totalClasses!=0 &&
+                <p className="card-text" style={{color:'green',font:"message-box"}}>
+                  
+                   Percentage attendance : {(totalClasses-(subjectAttendanceDates.length))/totalClasses*100}%
+                   </p>)
+                   || (totalClasses==0 &&
+                    <p className="card-text" style={{color:'green',font:"message-box"}}>
+                      
+                       Percentage attendance : 100%
+                       </p>)
               )}
               {status !== "teacher" && <h6>Dates</h6>}
 
