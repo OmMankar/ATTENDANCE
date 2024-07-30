@@ -44,7 +44,7 @@ const TeacherContextProvider = ({ children }) => {
   const handleAttendanceOver=async()=>{
     if(subjectCode!=""){
       
-    const saveDate=await  fetch(`https://attendance-psi-sand.vercel.app/teacher/DateOfAttendance/${teacherDetails._id}`, {
+    const saveDate=await  fetch(`https://attendance-backend-wask.onrender.com/api/v1/teacher/DateOfAttendance/${teacherDetails._id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
