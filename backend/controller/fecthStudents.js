@@ -17,7 +17,7 @@ exports.fetchStudent = async (req, res) => {
     if (!(await Student.findOne({ section }))) {
       return res.status(400).json({
         success: false,
-        message: "User with given Scholar No. not found",
+        message: "Section details incorrect ",
       });
     }
 
