@@ -35,7 +35,7 @@ const StudentContextProvider = ({ children }) => {
     console.log("handleAbsentDateSubjectCodeWise")
     subjects.map(item=>{
       let data =  fetch(
-        `http://localhost:5000/api/v1/teacher/numberOfClasses`,
+        `https://attendance-backend-wask.onrender.com/api/v1/teacher/numberOfClasses`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
