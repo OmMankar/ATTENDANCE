@@ -1,16 +1,18 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 import { StudentContext } from "../store/student-store";
+import Loading from "./Loading";
 
 
 const StudentAuthentication = () => {
 const {handleStatus,handleStudentDetails}=useContext(StudentContext);
-
+const [loading,setLoading]=useState(false);
   let scholarNo = useRef("");
 
   const handleSubmit = async (event) => {
+    setLoading(true);
     event.preventDefault();
-
-    fetch("https://attendance-backend-wask.onrender.com/api/v1/student", {
+    
+     await fetch("http://localhost:5000/api/v1/student", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -21,6 +23,7 @@ const {handleStatus,handleStudentDetails}=useContext(StudentContext);
         return res.json();
       })
       .then((data) => {
+        setLoading(false);
         if (!data.success) {
           alert(data.message);
         } else {
@@ -37,7 +40,8 @@ const {handleStatus,handleStudentDetails}=useContext(StudentContext);
 
   return (
     <>
-      <center className="container px-4 py-5 " id="featured-3">
+    {loading && <Loading></Loading>}   
+   <center className="container px-4 py-5 " id="featured-3">
         <center className="" style={{ width: "300px" }}>
           <form onSubmit={handleSubmit}>
             <h1 className="h3 fw-normal">Please sign in</h1>
