@@ -1,24 +1,27 @@
 import React, { useContext, useEffect, useState } from "react";
 import { StudentContext } from "../store/student-store";
 import Card from "./Card";
+import Loading from "./Loading";
 
 const SubjectCodeWise = () => {
   const { subjects, StudentDetails, absentDates } = useContext(StudentContext);
   const [classesData, setClassesData] = useState({});
-
+  const[loading,setLoading]=useState(false);
   useEffect(() => {
     const fetchClassesData = async () => {
+      setLoading(true);
       const data = {};
       for (const subjectCode of subjects) {
         try {
           const response = await fetch(
-            `https://attendance-backend-wask.onrender.com/api/v1/teacher/numberOfClasses`,
+            `http://localhost:5000/api/v1/teacher/numberOfClasses`,
             {
               method: "POST",
               headers: { "Content-Type": "application/json" },
               body: JSON.stringify({ subjectCode }),
             }
           );
+
           const result = await response.json();
           if (result.success) {
             data[subjectCode] = result.data;
@@ -29,6 +32,7 @@ const SubjectCodeWise = () => {
           console.error("Error fetching number of classes:", error);
         }
       }
+      setLoading(false);
       setClassesData(data);
     };
 
@@ -39,6 +43,7 @@ const SubjectCodeWise = () => {
 
   return (
     <>
+    {loading && <Loading/>}
       {subjects.map((subjectCode) => {
         const subjectAttendanceDates = absentDates.filter(
           (absent) => absent.subjectCode === subjectCode
