@@ -1,17 +1,19 @@
-import { useContext, useRef } from "react";
+import { useContext, useRef, useState } from "react";
 
 import { TeacherContext } from "../store/teacher-store";
+import Loading from "./Loading";
 
 const TeacherView=()=>{
   
   const { handleStudentsData}=useContext(TeacherContext);
+  const[loading,setLoading]=useState(false);
   let section = useRef("");
   let department = useRef("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
-    fetch("https://attendance-backend-wask.onrender.com/api/v1/teacher/fetchStudent", {
+    setLoading(true);
+    fetch("http://localhost:5000/api/v1/teacher/fetchStudent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
@@ -23,6 +25,7 @@ const TeacherView=()=>{
         return res.json();
       })
       .then((data) => {
+        setLoading(false)
         if (!data.success) {
           alert(data.message);
         } else {
@@ -37,6 +40,7 @@ const TeacherView=()=>{
       
 
   return <>
+  {loading && <Loading></Loading>}
   <center className="container px-4 py-5 " id="featured-3">
         <center className="" style={{ width: "300px" }}>
           <form onSubmit={handleSubmit}>
