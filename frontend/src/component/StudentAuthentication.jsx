@@ -12,7 +12,7 @@ const [loading,setLoading]=useState(false);
     setLoading(true);
     event.preventDefault();
     
-     await fetch("http://localhost:5000/api/v1/student", {
+     await fetch("https://attendance-backend-wask.onrender.com/api/v1/student", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
