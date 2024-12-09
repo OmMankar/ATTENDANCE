@@ -15,7 +15,7 @@ const TeacherAuthentication = () => {
     setLoading(true);
     event.preventDefault();
     const code=subjectCode.current.value;
-    fetch("http://localhost:5000/api/v1/teacher", {
+    fetch("https://attendance-backend-wask.onrender.com/api/v1/teacher", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
